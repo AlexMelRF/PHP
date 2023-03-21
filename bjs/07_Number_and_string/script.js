@@ -60,6 +60,7 @@ document.querySelector('#btn_clr').addEventListener('click', function () {
     operation = null;
     inputWindow.value = '';
     historyWindow.textContent = '';
+    result = 0;
 })
 
 document.querySelector('#btn_sum').addEventListener('click', function () {
@@ -91,10 +92,14 @@ document.querySelector('#btn_dev').addEventListener('click', function () {
 })
 
 document.querySelector('#btn_sqrt').addEventListener('click', function () {
-    lastOperand = parseInt(inputWindow.value);
-    result = Math.sqrt(lastOperand);
-    inputWindow.value = result;
-    historyWindow.textContent = '√ ' + lastOperand + ' = ' + result;
+    if (inputWindow.value > 0) {
+        lastOperand = parseInt(inputWindow.value);
+        result = Math.sqrt(lastOperand);
+        inputWindow.value = result;
+        historyWindow.textContent = '√ ' + lastOperand + ' = ' + result;
+    } else {
+        historyWindow.textContent = 'error';
+    }
 })
 
 document.querySelector('#btn_enter').addEventListener('click', function () {
@@ -111,14 +116,15 @@ document.querySelector('#btn_enter').addEventListener('click', function () {
         case 'dev':
             result = lastOperand / parseInt(inputWindow.value);
             break; 
-        case 'sqrt':
-            result = lastOperand + parseInt(inputWindow.value);
-            break;   
+        // case 'sqrt':
+        //     result = lastOperand + parseInt(inputWindow.value);
+        //     break;   
     }
     operation = null;
     lastOperand = 0;
     inputWindow.value = result;
     historyWindow.textContent += ' = ' + result;
+    
 })
 
 
