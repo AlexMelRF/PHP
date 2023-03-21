@@ -1,0 +1,22 @@
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    font-size: large;
+    font-weight: 100;
+}
+
+a:hover {
+    color: rgb(220, 19, 19);
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 10px;
+}
