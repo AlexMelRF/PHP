@@ -1,13 +1,17 @@
 let minValue;
 let maxValue;
-let answerNumber  = Math.floor((minValue + maxValue) / 2);
+//Current number
+let answerNumber;
+//Number of cycle
 let orderNumber = 1;
+//Stop/run the game
 let gameRun = true;
 const orderNumberField = document.querySelector('#orderNumberField');
 const answerField = document.querySelector('#answerField');
 
 newGame();
 
+//Starts new game
 function newGame () {
     minValue = parseInt(prompt('Минимальное значение числа для игры','-999'));  
     maxValue = parseInt(prompt('Максимальное значение числа для игры','999'));
@@ -25,12 +29,14 @@ function newGame () {
     answerShow();
 }
 
+//Shows alert if user number is wrong
 function wrongRangeAlert() {
     const phraseRandom = Math.round(Math.random());
     const answerPhrase = (phraseRandom === 1) ? `Вы загадали неправильное число!\n\u{1F914}` : `Я сдаюсь..\n\u{1F92F}`;
     answerField.innerText = answerPhrase;
 }
 
+//Shows random answer
 function answerShow() {
     switch(Math.round(Math.random() * 2)) {
         case 0:
@@ -84,10 +90,12 @@ function numberToString() {
     return stringAnswer;
 }
 
+//Run new game
 document.querySelector('#btnRetry').addEventListener('click', function () {
     newGame();
 })
 
+//User number is greater than suggested
 document.querySelector('#btnOver').addEventListener('click', function () {
     if (gameRun){
         if (minValue === maxValue) {
@@ -103,6 +111,8 @@ document.querySelector('#btnOver').addEventListener('click', function () {
     }
 })
 
+
+//User number is less than suggested
 document.querySelector('#btnLess').addEventListener('click', function () {
     if (gameRun){
         if (minValue === maxValue) {
@@ -118,6 +128,7 @@ document.querySelector('#btnLess').addEventListener('click', function () {
     }
 })
 
+//The program guessed the number
 document.querySelector('#btnEqual').addEventListener('click', function () {
     if (gameRun){
         switch(Math.round(Math.random() * 2)) {
