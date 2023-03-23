@@ -13,20 +13,19 @@ newGame();
 
 //Starts new game
 function newGame () {
-    minValue = parseInt(prompt('Минимальное значение числа для игры','-999'));  
-    maxValue = parseInt(prompt('Максимальное значение числа для игры','999'));
-    if (minValue < -999) {
-        minValue = -999;
-    }
-    if (maxValue > 999) {
-        maxValue = 999;
-    }
+    let temp;
+    temp = parseInt(prompt('Min значение числа для игры','-999'));  
+    minValue = (temp < -999) || (temp > 999) || isNaN(temp) ? -999 : temp; 
+    temp = parseInt(prompt('Max значение числа для игры, не равное и не меньше min','999'));
+    maxValue = (temp > 999) || (temp < -999) || isNaN(temp) || (temp <= minValue) ? 999 : temp;
     alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
     answerNumber  = Math.floor((minValue + maxValue) / 2);
     orderNumber = 1;
     gameRun = true;
     orderNumberField.innerText = orderNumber;
     answerShow();
+    console.clear();
+    console.log(minValue, maxValue);
 }
 
 //Shows alert if user number is wrong
@@ -36,7 +35,7 @@ function wrongRangeAlert() {
     answerField.innerText = answerPhrase;
 }
 
-//Shows random answer
+//Shows random text
 function answerShow() {
     switch(Math.round(Math.random() * 2)) {
         case 0:
@@ -97,34 +96,44 @@ document.querySelector('#btnRetry').addEventListener('click', function () {
 
 //User number is greater than suggested
 document.querySelector('#btnOver').addEventListener('click', function () {
-    if (gameRun){
-        if (minValue === maxValue) {
-            wrongRangeAlert();  
+    if ((minValue === maxValue || minValue === 998) && gameRun) {
+        wrongRangeAlert();
+        gameRun = false;
+    }
+    if (gameRun) {
+        minValue = answerNumber + 1;
+        answerNumber = Math.ceil((minValue + maxValue) / 2);
+        if (maxValue < minValue) {
+            wrongRangeAlert();
             gameRun = false;
         } else {
-            minValue = answerNumber  + 1;
-            answerNumber = Math.floor((minValue + maxValue) / 2);
+            console.log(minValue, maxValue);///////////////////////////////////////
             orderNumber++;
             orderNumberField.innerText = orderNumber;
-            answerShow();  
-        }
+            answerShow();
+        }  
     }
 })
 
-
 //User number is less than suggested
 document.querySelector('#btnLess').addEventListener('click', function () {
-    if (gameRun){
-        if (minValue === maxValue) {
-            wrongRangeAlert();  
+    if ((minValue === maxValue || maxValue === -998) && gameRun) {
+        wrongRangeAlert();
+        gameRun = false;
+    }
+    if (gameRun) {
+        maxValue = answerNumber - 1;
+        answerNumber = Math.floor((minValue + maxValue) / 2);
+        if (maxValue < minValue) {
+            wrongRangeAlert();
             gameRun = false;
         } else {
-            maxValue = answerNumber  - 1;
-            answerNumber = Math.floor((minValue + maxValue) / 2);
+            console.log(minValue, maxValue);///////////////////////////////////////
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             answerShow();
         }
+         
     }
 })
 
