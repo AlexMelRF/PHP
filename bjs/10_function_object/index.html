@@ -19,13 +19,19 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h3 class="card-title"><span id="surnameOutput">Генерация фамилии</span></h3>
-                            <h4>Имя: <span id="firstNameOutput">Иван</span></h4>
+                            <h3 class="card-title"><span id="surnameOutput" class="clrData">Генерация фамилии</span></h3>
+                            <h4><span id="firstNameOutput" class="clrData">Имя</span></h4>
+                            <h4><span id="patronymicOutput" class="clrData">Отчество</span></h4>
                             <p>
-                                <span id="genderOutput">Генерация пола</span>
+                                <span id="genderOutput" class="clrData">Пол</span>
                                 <span>, </span>
-                                <span id="birthYearOutput">Генерация года рождения</span>
+                                <span id="birthYearOutput" class="clrData">Год рождения</span>
+                                <span>, </span>
+                                <br>
+                                <span id="occupationOutput" class="clrData">Род деятельности</span>
                             </p>
+                            <button type="button" id="refreshBtn" class="btn btn-primary">Обновить</button>
+                            <button type="button" id="clearBtn" class="btn btn-danger">Очистить</button>
                         </div>
                     </div>
                 </div>
