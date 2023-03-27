@@ -107,7 +107,7 @@ document.querySelector('#btnOver').addEventListener('click', function () {
             wrongRangeAlert();
             gameRun = false;
         } else {
-            console.log(minValue, maxValue);///////////////////////////////////////
+            console.log(minValue, maxValue);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             answerShow();
@@ -128,7 +128,7 @@ document.querySelector('#btnLess').addEventListener('click', function () {
             wrongRangeAlert();
             gameRun = false;
         } else {
-            console.log(minValue, maxValue);///////////////////////////////////////
+            console.log(minValue, maxValue);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             answerShow();

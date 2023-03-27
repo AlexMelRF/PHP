@@ -8,7 +8,7 @@
 //     document.querySelector('#birthYearOutput').innerText = initPerson.dateOfBirth;
 //     document.querySelector('#occupationOutput').innerText = initPerson.occupation;
 // };
-const dataFields = document.querySelectorAll('.clrData');
+const dataFields = document.querySelectorAll('.inData');
 document.querySelector('#refreshBtn').addEventListener('click', () => {
     const initPerson = personGenerator.getPerson();
     document.querySelector('#genderOutput').innerText = initPerson.gender;
@@ -19,7 +19,8 @@ document.querySelector('#refreshBtn').addEventListener('click', () => {
     document.querySelector('#occupationOutput').innerText = initPerson.occupation;
 });
 
+//Clear all the fields
 document.querySelector('#clearBtn').addEventListener('click', () => {
-    dataFields[0].innerText = '';
-    dataFields[1].innerText = '';
+    for (let i = 0; i < dataFields.length; i++)
+        dataFields[i].innerText = ' ';
 });

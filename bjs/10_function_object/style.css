@@ -1,0 +1,12 @@
+button {
+    width: 200px;
+    border-radius: 10px;
+}
+
+#refreshBtn {
+    background-color: rgb(79, 229, 79);
+}
+
+#clearBtn {
+    background-color: red;
+}

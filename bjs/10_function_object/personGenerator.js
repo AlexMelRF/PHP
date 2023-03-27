@@ -96,10 +96,10 @@ const personGenerator = {
     //0 - female, 1 - male
     GENDER: 0,
 
-    //Returns a random number in the range from min to max inclusive
+    //returns a random number in the range from min to max inclusive
     randomIntNumber: (max = 1, min = 0) => Math.floor(Math.random() * (max - min + 1) + min),
 
-    //if flag === true we return male and female occupation separately
+    //if flag === true we return male or female occupation
     //otherwise return random value out from a list
     randomValue: function (json, flag = false) {
         const obj = JSON.parse(json);
@@ -112,7 +112,6 @@ const personGenerator = {
         }
     },
 
-    //Returns random gender
     randomGender: function() {
         this.GENDER = this.randomIntNumber();
         return this.GENDER ? 'мужчина' : 'женщина';
@@ -121,41 +120,6 @@ const personGenerator = {
     randomFirstName: function() {
         return this.GENDER ? this.randomValue(this.firstNameMaleJson) : this.randomValue(this.firstNameFemaleJson);
     },
-    //     let patronymic;
-    //     let temp = this.randomValue(this.firstNameMaleJson);
-    //     if (this.GENDER) {
-    //         if (temp === 'Михаил') {
-    //             patronymic = 'Михайлович';
-    //         } else {
-    //             switch (temp.charAt(temp.length - 1)) {
-    //                 case 'й':
-    //                     patronymic = temp.substr(0, temp.length - 1) + 'евич';
-    //                     break;
-    //                 case 'а':
-    //                     patronymic = temp.substr(0, temp.length - 1) + 'ич';
-    //                     break;
-    //                 default:
-    //                     patronymic = temp.substr(0) + 'ович';
-    //             }
-    //         }
-    //     } else {
-    //         if (temp === 'Михаил') {
-    //             patronymic = 'Михайловна';
-    //         } else {
-    //             switch (temp.charAt(temp.length - 1)) {
-    //                 case 'й':
-    //                     patronymic = temp.substr(0, temp.length - 1) + 'евна';
-    //                     break;
-    //                 case 'а':
-    //                     patronymic = temp.substr(0, temp.length - 1) + 'ична';
-    //                     break;
-    //                 default:
-    //                     patronymic = temp.substr(0) + 'овна';
-    //             }
-    //         }
-    //     }
-    //     return patronymic;
-    // },
     
     randomSurname: function() {  
         return this.GENDER ? this.randomValue(this.surnameJson) : this.randomValue(this.surnameJson) + 'а';
@@ -164,16 +128,17 @@ const personGenerator = {
     randomDateOfBirth: function () {
         let month = this.randomValue(this.month);
         let day;
-        if (month == 'апреля' || month == 'июня' || month == 'сентября' || month == 'ноября') {
+        if (month === 'апреля' || month === 'июня' || month === 'сентября' || month === 'ноября') {
             day = this.randomIntNumber(30, 1);
         } else {
-            //there are 28 or 29 days in February
-            if (month == 'февраля') {                           
+            //because there are 29 days in February every 4th year
+            if (month === 'февраля') {                           
                 day = this.randomIntNumber(119, 0) % 4 ? this.randomIntNumber(28, 1) : this.randomIntNumber(29, 1);
             } else {
                 day = this.randomIntNumber(31, 1);
             }
         }
+        //1904 - leap year
         return String(1904 + this.randomIntNumber(119, 0)) + 'г., ' + String(day) + ' ' + month;
     },
 
